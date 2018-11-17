@@ -88,19 +88,19 @@ namespace Snake_Game
         }
         public void wall()
         {
-            for (int i = 0; i < 31; i++)
+            for (int i = 1; i < 31; i++)
             {
-                for (int k = 0; k < 61; k++)
+                for (int k = 1; k < 61; k++)
                 {
-                    if (i == 0 || k == 0 || i == 30 || k == 60)
+                    if (i == 1 || k == 1 || i == 30 || k == 60)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.SetCursorPosition(k, i);
-                        Console.WriteLine("* ");
+                        Console.WriteLine("*");
                     }
                     else
                     {
-                        Console.WriteLine("  ");
+                        Console.WriteLine(" ");
                     }
 
                 }
