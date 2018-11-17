@@ -10,7 +10,7 @@ namespace Snake_Game
     {
         public int X { get; set; }
         public int Y { get; set; }
-        public Snake(int x,int y)
+        public Snake(int x, int y)
         {
             this.X = x;
             this.Y = y;
@@ -19,11 +19,24 @@ namespace Snake_Game
         {
             Console.SetCursorPosition(X, Y);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine((char)2);
+            Console.WriteLine((char)2); Console.WriteLine(); Console.WriteLine();
         }
         public void wall()
         {
+            for (int i = 0; i < 31; i++)
+            {
+                for (int k = 0; k < 61; k++)
+                {
+                    if (i == 0 || k == 0 || i==30 ||k==60)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.SetCursorPosition(k, i);
+                        Console.WriteLine("* ");
+                    }
 
+                }
+            }
+            Console.WriteLine();
         }
     }
 
@@ -32,10 +45,11 @@ namespace Snake_Game
         static void Main(string[] args)
         {
             Random random = new Random();
-            int x = random.Next(1, 39);
-            int y = random.Next(1, 39);
-            Snake snake = new Snake(x, y);
-            snake.showSnake();
+            int x = random.Next(1, 51);
+            int y = random.Next(1, 31);
+            Snake snake = new Snake(x, y); snake.showSnake();
+            snake.wall();
+
 
         }
     }
