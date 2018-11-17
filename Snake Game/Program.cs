@@ -19,7 +19,52 @@ namespace Snake_Game
         {
             Console.SetCursorPosition(X, Y);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine((char)2); Console.WriteLine(); Console.WriteLine();
+            Console.WriteLine((char)2);
+        }
+        public bool isGameOn()
+        {
+            bool isgameon = true;
+            return isgameon;
+        }
+        public void moveSnake()
+        {
+            ConsoleKey command = Console.ReadKey().Key;
+            do
+            {
+                switch (command)
+                {
+                    case ConsoleKey.LeftArrow:
+                        {
+                            Console.SetCursorPosition(X, Y);
+                            Console.WriteLine(" ");
+                            --X;
+                        }
+                        break;
+                    case ConsoleKey.UpArrow:
+                        {
+                            Console.SetCursorPosition(X, Y);
+                            Console.WriteLine(" ");
+                            --Y;
+                        }
+                        break;
+                    case ConsoleKey.RightArrow:
+                        {
+                            Console.SetCursorPosition(X, Y);
+                            Console.WriteLine(" ");
+                            ++X;
+                        }
+                        break;
+                    case ConsoleKey.DownArrow:
+                        {
+                            Console.SetCursorPosition(X, Y);
+                            Console.WriteLine(" ");
+                            ++Y;
+                        }
+                        break;
+                }
+
+
+            } while (isGameOn());
         }
         public void wall()
         {
@@ -27,7 +72,7 @@ namespace Snake_Game
             {
                 for (int k = 0; k < 61; k++)
                 {
-                    if (i == 0 || k == 0 || i==30 ||k==60)
+                    if (i == 0 || k == 0 || i == 30 || k == 60)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.SetCursorPosition(k, i);
@@ -49,7 +94,6 @@ namespace Snake_Game
             int y = random.Next(1, 31);
             Snake snake = new Snake(x, y); snake.showSnake();
             snake.wall();
-
 
         }
     }
