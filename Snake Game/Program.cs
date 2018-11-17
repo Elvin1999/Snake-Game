@@ -10,6 +10,7 @@ namespace Snake_Game
     {
         public int X { get; set; }
         public int Y { get; set; }
+        int gameSpeed = 150;
         public Snake(int x, int y)
         {
             this.X = x;
@@ -26,11 +27,22 @@ namespace Snake_Game
             bool isgameon = true;
             return isgameon;
         }
+        public bool hitWall()
+        {
+            bool hitwall = false;
+            if (X == 1 || X == 59 || Y == 1 || Y == 29)
+            {
+                hitwall = true;
+            }
+            return hitwall;
+        }
         public void moveSnake()
         {
+            bool isgameon = false;
             ConsoleKey command = Console.ReadKey().Key;
             do
             {
+              //  Console.WriteLine($"\t\t\t\t\t\t\t\t X {X} Y {Y}");
                 switch (command)
                 {
                     case ConsoleKey.LeftArrow:
@@ -62,9 +74,17 @@ namespace Snake_Game
                         }
                         break;
                 }
+                showSnake();
+                isgameon = isGameOn();
+                if (hitWall() == true)
+                {
+                    Console.WriteLine("Game Over");
+                    isgameon = false;
+                }
+                if (Console.KeyAvailable) command = Console.ReadKey().Key;
+                System.Threading.Thread.Sleep(gameSpeed);
+            } while (isgameon);
 
-
-            } while (isGameOn());
         }
         public void wall()
         {
@@ -77,6 +97,10 @@ namespace Snake_Game
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.SetCursorPosition(k, i);
                         Console.WriteLine("* ");
+                    }
+                    else
+                    {
+                        Console.WriteLine("  ");
                     }
 
                 }
@@ -94,6 +118,7 @@ namespace Snake_Game
             int y = random.Next(1, 31);
             Snake snake = new Snake(x, y); snake.showSnake();
             snake.wall();
+            snake.moveSnake();
 
         }
     }
